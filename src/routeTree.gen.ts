@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CharactersRouteImport } from './routes/characters'
+import { Route as NewProjectRouteImport } from './routes/new-project'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ScenesRouteImport } from './routes/scenes'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as StoryRouteImport } from './routes/story'
+import { Route as StoryboardRouteImport } from './routes/storyboard'
+import { Route as VideoRouteImport } from './routes/video'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CharactersRoute = CharactersRouteImport.update({
+  id: '/characters',
+  path: '/characters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewProjectRoute = NewProjectRouteImport.update({
+  id: '/new-project',
+  path: '/new-project',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScenesRoute = ScenesRouteImport.update({
+  id: '/scenes',
+  path: '/scenes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoryRoute = StoryRouteImport.update({
+  id: '/story',
+  path: '/story',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoryboardRoute = StoryboardRouteImport.update({
+  id: '/storyboard',
+  path: '/storyboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideoRoute = VideoRouteImport.update({
+  id: '/video',
+  path: '/video',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/characters': typeof CharactersRoute
+  '/new-project': typeof NewProjectRoute
+  '/projects': typeof ProjectsRoute
+  '/scenes': typeof ScenesRoute
+  '/settings': typeof SettingsRoute
+  '/story': typeof StoryRoute
+  '/storyboard': typeof StoryboardRoute
+  '/video': typeof VideoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/characters': typeof CharactersRoute
+  '/new-project': typeof NewProjectRoute
+  '/projects': typeof ProjectsRoute
+  '/scenes': typeof ScenesRoute
+  '/settings': typeof SettingsRoute
+  '/story': typeof StoryRoute
+  '/storyboard': typeof StoryboardRoute
+  '/video': typeof VideoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/characters': typeof CharactersRoute
+  '/new-project': typeof NewProjectRoute
+  '/projects': typeof ProjectsRoute
+  '/scenes': typeof ScenesRoute
+  '/settings': typeof SettingsRoute
+  '/story': typeof StoryRoute
+  '/storyboard': typeof StoryboardRoute
+  '/video': typeof VideoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/characters'
+    | '/new-project'
+    | '/projects'
+    | '/scenes'
+    | '/settings'
+    | '/story'
+    | '/storyboard'
+    | '/video'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/characters'
+    | '/new-project'
+    | '/projects'
+    | '/scenes'
+    | '/settings'
+    | '/story'
+    | '/storyboard'
+    | '/video'
+  id:
+    | '__root__'
+    | '/'
+    | '/characters'
+    | '/new-project'
+    | '/projects'
+    | '/scenes'
+    | '/settings'
+    | '/story'
+    | '/storyboard'
+    | '/video'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CharactersRoute: typeof CharactersRoute
+  NewProjectRoute: typeof NewProjectRoute
+  ProjectsRoute: typeof ProjectsRoute
+  ScenesRoute: typeof ScenesRoute
+  SettingsRoute: typeof SettingsRoute
+  StoryRoute: typeof StoryRoute
+  StoryboardRoute: typeof StoryboardRoute
+  VideoRoute: typeof VideoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/characters': {
+      id: '/characters'
+      path: '/characters'
+      fullPath: '/characters'
+      preLoaderRoute: typeof CharactersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-project': {
+      id: '/new-project'
+      path: '/new-project'
+      fullPath: '/new-project'
+      preLoaderRoute: typeof NewProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scenes': {
+      id: '/scenes'
+      path: '/scenes'
+      fullPath: '/scenes'
+      preLoaderRoute: typeof ScenesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/story': {
+      id: '/story'
+      path: '/story'
+      fullPath: '/story'
+      preLoaderRoute: typeof StoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/storyboard': {
+      id: '/storyboard'
+      path: '/storyboard'
+      fullPath: '/storyboard'
+      preLoaderRoute: typeof StoryboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/video': {
+      id: '/video'
+      path: '/video'
+      fullPath: '/video'
+      preLoaderRoute: typeof VideoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CharactersRoute: CharactersRoute,
+  NewProjectRoute: NewProjectRoute,
+  ProjectsRoute: ProjectsRoute,
+  ScenesRoute: ScenesRoute,
+  SettingsRoute: SettingsRoute,
+  StoryRoute: StoryRoute,
+  StoryboardRoute: StoryboardRoute,
+  VideoRoute: VideoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
