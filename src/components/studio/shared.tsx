@@ -33,17 +33,8 @@ export function Heading({
     </div>
   );
 }
-export function DemoNotice({ video = false }: { video?: boolean }) {
-  return (
-    <div className="demo-notice">
-      <Info size={17} />
-      <span>
-        {video
-          ? "โหมดตัวอย่าง: ยังไม่ได้เชื่อมต่อบริการ AI rendering ภาพที่แสดงเป็นภาพนิ่งจาก Storyboard ไม่ใช่วิดีโอที่สร้างด้วย AI และยังไม่สามารถดาวน์โหลดวิดีโอได้"
-          : "โหมดตัวอย่าง: ยังไม่ได้เชื่อมต่อบริการ AI เนื้อเรื่องและภาพตัวอย่างเป็นตัวอย่างสำเร็จรูป คุณสามารถแก้ไขและบันทึกได้"}
-      </span>
-    </div>
-  );
+export function DemoNotice() {
+  return <div className="demo-notice"><Info size={17}/><span>โหมดตัวอย่าง: ยังไม่ได้เชื่อมต่อบริการ AI ภาพและเนื้อหาที่แสดงเป็นตัวอย่างสำเร็จรูป ไม่ได้สร้างจากคำอธิบายของคุณ คุณสามารถแก้ไขรายละเอียดและบันทึกได้</span></div>;
 }
 export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -163,7 +154,7 @@ export function ProjectCard({
   return (
     <article className="project-card">
       <Link
-        to="/story"
+        to="/gallery"
         onClick={() => select(project.id)}
         className="block project-cover"
         aria-label={`เปิด ${project.name}`}
@@ -179,7 +170,7 @@ export function ProjectCard({
       </Link>
       <div className="project-info">
         <div className="flex items-center gap-1">
-          <Link to="/story" onClick={() => select(project.id)} className="min-w-0 flex-1">
+          <Link to="/gallery" onClick={() => select(project.id)} className="min-w-0 flex-1">
             <h3 className="truncate">{project.name}</h3>
           </Link>
           <Button
@@ -204,7 +195,7 @@ export function ProjectCard({
         <div className="flex justify-between text-[10px] mt-4">
           <span className={percentage === 100 ? "text-success" : "text-bright"}>
             {percentage === 100
-              ? "Storyboard พร้อมแล้ว"
+              ? "มีรูปตัวละครและฉากแล้ว"
               : percentage === 0
                 ? "โปรเจกต์ใหม่"
                 : "กำลังสร้างสรรค์"}
@@ -217,7 +208,7 @@ export function ProjectCard({
         {(management || menu) && (
           <div className="flex gap-2 mt-3">
             <Button asChild variant="secondary" size="sm">
-              <Link to="/story" onClick={() => select(project.id)}>
+              <Link to="/gallery" onClick={() => select(project.id)}>
                 เปิด <ArrowUpRight size={12} />
               </Link>
             </Button>

@@ -84,13 +84,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "AI Cartoon Studio" },
       {
         name: "description",
-        content: "สตูดิโอสร้างเรื่องราว ตัวละคร และ Storyboard สำหรับวิดีโอการ์ตูนด้วย AI",
+        content: "สตูดิโอออกแบบรูปตัวละครและฉากการ์ตูนด้วย AI",
       },
 
       { property: "og:title", content: "AI Cartoon Studio" },
       {
         property: "og:description",
-        content: "สตูดิโอสร้างเรื่องราว ตัวละคร และ Storyboard สำหรับวิดีโอการ์ตูนด้วย AI",
+        content: "สตูดิโอออกแบบรูปตัวละครและฉากการ์ตูนด้วย AI",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

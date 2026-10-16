@@ -20,23 +20,6 @@ export type Scene = {
   style: string;
   image: string;
 };
-export type Shot = {
-  id: string;
-  description: string;
-  dialogue: string;
-  camera: string;
-  duration: number;
-  characters: string[];
-  image: string;
-};
-export type VideoSettings = {
-  style: string;
-  ratio: string;
-  resolution: string;
-  voice: string;
-  subtitles: boolean;
-  music: string;
-};
 export type Project = {
   id: string;
   name: string;
@@ -52,8 +35,6 @@ export type Project = {
   characterCount: number;
   characters: Character[];
   scenes: Scene[];
-  shots: Shot[];
-  video: VideoSettings;
 };
 export const STORE_KEY = "ai-cartoon-studio-v1";
 export function makeProject(name: string, style = "3D Cartoon"): Project {
@@ -72,39 +53,14 @@ export function makeProject(name: string, style = "3D Cartoon"): Project {
     characterCount: 2,
     characters: [],
     scenes: [],
-    shots: [],
-    video: {
-      style,
-      ratio: "16:9",
-      resolution: "1080p",
-      voice: "ไม่มีเสียงบรรยาย",
-      subtitles: true,
-      music: "ไม่มีเพลง",
-    },
+
   };
 }
 export function progress(p: Project) {
-  return Math.round(
-    ([!!p.story.trim(), p.characters.length > 0 && p.scenes.length > 0, p.shots.length > 0].filter(
-      Boolean,
-    ).length /
-      3) *
-      100,
-  );
+  return (Number(p.characters.some(c => !!c.image)) + Number(p.scenes.some(s => !!s.image))) * 50;
 }
 export function updateProject(projects: Project[], id: string, patch: Partial<Project>) {
   return projects.map((p) => (p.id === id ? { ...p, ...patch, id: p.id } : p));
-}
-export function reorderShots(shots: Shot[], index: number, direction: number) {
-  const target = index + direction;
-  if (target < 0 || target >= shots.length) return shots;
-  const current = shots[index];
-  const next = shots[target];
-  if (!current || !next) return shots;
-  const result = [...shots];
-  result[index] = next;
-  result[target] = current;
-  return result;
 }
 export function parseProjects(raw: string | null): Project[] | null {
   if (!raw) return null;
@@ -118,9 +74,7 @@ export function parseProjects(raw: string | null): Project[] | null {
           typeof p.name === "string" &&
           typeof p.story === "string" &&
           Array.isArray(p.characters) &&
-          Array.isArray(p.scenes) &&
-          Array.isArray(p.shots) &&
-          p.video,
+          Array.isArray(p.scenes),
       )
     )
       return null;
@@ -165,18 +119,6 @@ export function demoProjects(): Project[] {
           },
         ];
       }
-      if (i === 2)
-        p.shots = [
-          {
-            id: `${p.id}-shot`,
-            description: "มินะได้พบกับบลูบนเกาะลอยฟ้า",
-            dialogue: "ไปผจญภัยด้วยกันไหม?",
-            camera: "มุมกว้าง",
-            duration: 5,
-            characters: p.characters[0] ? [p.characters[0].id] : [],
-            image: p.image,
-          },
-        ];
       return p;
     },
   );

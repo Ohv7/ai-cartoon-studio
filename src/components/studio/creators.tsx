@@ -421,8 +421,8 @@ function Scenes({ project }: { project: Project }) {
       </div>
       <div className="flex justify-end mt-6">
         <Button asChild>
-          <Link to="/storyboard">
-            ไปที่ Storyboard
+          <Link to="/gallery">
+            ดูคลังภาพการ์ตูน
             <ArrowRight />
           </Link>
         </Button>
