@@ -1,6 +1,6 @@
 # AI Cartoon Studio
-- [ ] Shared Thai dashboard, theme and navigation
-- [ ] Project persistence and management
-- [ ] Story, character, scene and storyboard workspaces
-- [ ] Honest demo video workspace and settings
-- [ ] Verify project flow and responsive views
+- [x] Shared Thai dashboard, theme and navigation
+- [x] Project persistence and management
+- [x] Story, character, scene and storyboard workspaces
+- [x] Honest demo video workspace and settings
+- [x] Verify project flow and responsive views
