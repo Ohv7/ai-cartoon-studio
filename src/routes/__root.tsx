@@ -82,18 +82,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "AI Cartoon Studio" },
-      { name: "description", content: "สตูดิโอสร้างเรื่องราว ตัวละคร และ Storyboard สำหรับวิดีโอการ์ตูนด้วย AI" },
-      
+      {
+        name: "description",
+        content: "สตูดิโอสร้างเรื่องราว ตัวละคร และ Storyboard สำหรับวิดีโอการ์ตูนด้วย AI",
+      },
+
       { property: "og:title", content: "AI Cartoon Studio" },
-      { property: "og:description", content: "สตูดิโอสร้างเรื่องราว ตัวละคร และ Storyboard สำหรับวิดีโอการ์ตูนด้วย AI" },
+      {
+        property: "og:description",
+        content: "สตูดิโอสร้างเรื่องราว ตัวละคร และ Storyboard สำหรับวิดีโอการ์ตูนด้วย AI",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -127,7 +135,12 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <StudioProvider><StudioShell><Outlet /></StudioShell><Toaster /></StudioProvider> breaks all child routes. */}
-      <StudioProvider><StudioShell><Outlet /></StudioShell><Toaster /></StudioProvider>
+      <StudioProvider>
+        <StudioShell>
+          <Outlet />
+        </StudioShell>
+        <Toaster />
+      </StudioProvider>
     </QueryClientProvider>
   );
 }
