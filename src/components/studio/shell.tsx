@@ -6,8 +6,7 @@ import {
   FileText,
   Users,
   Image,
-  Clapperboard,
-  Video,
+  Images,
   FolderOpen,
   Settings,
   Sparkles,
@@ -26,11 +25,10 @@ import { useStudio } from "./provider";
 export const navigation = [
   { to: "/", title: "หน้าหลัก", icon: LayoutDashboard },
   { to: "/new-project", title: "สร้างโปรเจกต์ใหม่", icon: Plus },
-  { to: "/story", title: "เขียนเนื้อเรื่อง", icon: FileText },
+  { to: "/story", title: "ไอเดียและเนื้อเรื่อง", icon: FileText },
   { to: "/characters", title: "สร้างตัวละคร", icon: Users },
   { to: "/scenes", title: "สร้างฉาก", icon: Image },
-  { to: "/storyboard", title: "Storyboard", icon: Clapperboard },
-  { to: "/video", title: "สร้างวิดีโอ", icon: Video },
+  { to: "/gallery", title: "คลังภาพการ์ตูน", icon: Images },
   { to: "/projects", title: "โปรเจกต์ของฉัน", icon: FolderOpen },
   { to: "/settings", title: "ตั้งค่า", icon: Settings },
 ] as const;
@@ -49,7 +47,7 @@ export function StudioShell({ children }: { children: ReactNode }) {
       <aside className="studio-sidebar">
         <Link to="/" className="brand" onClick={() => setMobile(false)}>
           <div className="brand-symbol">
-            <Clapperboard size={22} />
+            <Images size={22} />
           </div>
           <div className="brand-name">
             AI Cartoon
@@ -64,7 +62,7 @@ export function StudioShell({ children }: { children: ReactNode }) {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: true }}
-              className={`nav-item ${i === 7 ? "mt-6" : ""}`}
+              className={`nav-item ${item.to === "/projects" ? "mt-6" : ""}`}
               title={item.title}
               onClick={() => setMobile(false)}
             >

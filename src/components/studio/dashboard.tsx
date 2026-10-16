@@ -5,7 +5,7 @@ import {
   Plus,
   FileText,
   Users,
-  Clapperboard,
+  Image,
   ShieldCheck,
   FolderOpen,
   WandSparkles,
@@ -19,26 +19,26 @@ const steps = [
   {
     number: "01",
     icon: FileText,
-    title: "สร้างเนื้อเรื่อง",
-    description: "เขียนเรื่องราวในแบบของคุณ หรือให้ AI ช่วยต่อยอดจินตนาการให้เป็นเนื้อเรื่อง",
+    title: "วางไอเดียภาพ",
+    description: "บันทึกแนวคิดและรายละเอียดภาพที่อยากสร้าง หรือเริ่มออกแบบตัวละครได้ทันที",
     to: "/story",
-    link: "เริ่มเขียนเนื้อเรื่อง",
+    link: "บันทึกไอเดีย",
   },
   {
     number: "02",
     icon: Users,
-    title: "สร้างตัวละครและฉาก",
-    description: "ออกแบบตัวละครที่มีเอกลักษณ์ พร้อมสร้างฉากและโลกในเรื่องราวของคุณ",
+    title: "ออกแบบตัวละคร",
+    description: "ออกแบบรูปลักษณ์ เสื้อผ้า และบุคลิกของตัวละครในสไตล์ที่คุณชอบ",
     to: "/characters",
     link: "ออกแบบตัวละคร",
   },
   {
     number: "03",
-    icon: Clapperboard,
-    title: "สร้าง Storyboard และวิดีโอ",
-    description: "เรียงร้อยเรื่องราวเป็นฉาก เลือกสไตล์แอนิเมชัน และเตรียมสร้างวิดีโอของคุณ",
-    to: "/storyboard",
-    link: "สร้าง Storyboard",
+    icon: Image,
+    title: "สร้างฉากการ์ตูน",
+    description: "ออกแบบสถานที่และบรรยากาศ แล้วเก็บรูปตัวละครและฉากไว้ในคลังภาพ",
+    to: "/scenes",
+    link: "ออกแบบฉาก",
   },
 ] as const;
 export function Dashboard() {
@@ -73,19 +73,19 @@ export function Dashboard() {
             ปลดล็อกจินตนาการ ด้วย AI
           </span>
           <h1>
-            สร้างวิดีโอการ์ตูน
+            สร้างรูปและฉากการ์ตูน
             <br />
             ด้วยพลัง <span>AI</span>
           </h1>
           <p>
-            เปลี่ยนจินตนาการของคุณให้กลายเป็นวิดีโอการ์ตูน
+            เปลี่ยนจินตนาการของคุณให้กลายเป็นภาพการ์ตูน
             <br className="hidden sm:block" />
-            ได้ง่าย ๆ เพียง 3 ขั้นตอน
+            ออกแบบตัวละครและฉากในสไตล์ของคุณ
           </p>
           <Button asChild variant="hero">
             <Link to="/new-project">
               <WandSparkles size={17} />
-              เริ่มสร้างวิดีโอ
+              เริ่มสร้างรูปการ์ตูน
               <ArrowRight className="ml-3" size={16} />
             </Link>
           </Button>

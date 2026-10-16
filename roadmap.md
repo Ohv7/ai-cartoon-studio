@@ -1,6 +1,4 @@
-# AI Cartoon Studio
-- [x] Shared Thai dashboard, theme and navigation
-- [x] Project persistence and management
-- [x] Story, character, scene and storyboard workspaces
-- [x] Honest demo video workspace and settings
-- [x] Verify project flow and responsive views
+# AI Cartoon Studio — งานภาพการ์ตูน
+- [ ] เปลี่ยนหน้าหลักและเมนูเป็นรูป ตัวละคร และฉาก
+- [ ] นำวิดีโอและ Storyboard ออกโดยรักษาโปรเจกต์เดิม
+- [ ] ปรับสถานะโปรเจกต์และตรวจสอบขั้นตอนงานภาพ

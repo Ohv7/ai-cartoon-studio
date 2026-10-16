@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CharactersRouteImport } from './routes/characters'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as NewProjectRouteImport } from './routes/new-project'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ScenesRouteImport } from './routes/scenes'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const CharactersRoute = CharactersRouteImport.update({
   id: '/characters',
   path: '/characters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewProjectRoute = NewProjectRouteImport.update({
@@ -68,6 +74,7 @@ const VideoRoute = VideoRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/characters': typeof CharactersRoute
+  '/gallery': typeof GalleryRoute
   '/new-project': typeof NewProjectRoute
   '/projects': typeof ProjectsRoute
   '/scenes': typeof ScenesRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/characters': typeof CharactersRoute
+  '/gallery': typeof GalleryRoute
   '/new-project': typeof NewProjectRoute
   '/projects': typeof ProjectsRoute
   '/scenes': typeof ScenesRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/characters': typeof CharactersRoute
+  '/gallery': typeof GalleryRoute
   '/new-project': typeof NewProjectRoute
   '/projects': typeof ProjectsRoute
   '/scenes': typeof ScenesRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/characters'
+    | '/gallery'
     | '/new-project'
     | '/projects'
     | '/scenes'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/characters'
+    | '/gallery'
     | '/new-project'
     | '/projects'
     | '/scenes'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/characters'
+    | '/gallery'
     | '/new-project'
     | '/projects'
     | '/scenes'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CharactersRoute: typeof CharactersRoute
+  GalleryRoute: typeof GalleryRoute
   NewProjectRoute: typeof NewProjectRoute
   ProjectsRoute: typeof ProjectsRoute
   ScenesRoute: typeof ScenesRoute
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/characters'
       fullPath: '/characters'
       preLoaderRoute: typeof CharactersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/new-project': {
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CharactersRoute: CharactersRoute,
+  GalleryRoute: GalleryRoute,
   NewProjectRoute: NewProjectRoute,
   ProjectsRoute: ProjectsRoute,
   ScenesRoute: ScenesRoute,

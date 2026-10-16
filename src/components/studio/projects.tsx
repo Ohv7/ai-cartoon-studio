@@ -24,7 +24,7 @@ export function NewProject() {
   const [style, setStyle] = useState("3D Cartoon");
   return (
     <>
-      <Heading title="เริ่มต้นเรื่องราวใหม่" subtitle="ให้จินตนาการของคุณเป็นจุดเริ่มต้น" />
+      <Heading title="เริ่มต้นภาพการ์ตูนใหม่" subtitle="ให้จินตนาการของคุณเป็นจุดเริ่มต้น" />
       <div className="panel max-w-2xl mx-auto mt-10">
         <div className="step-icon mb-5">
           <Sparkles />
@@ -41,7 +41,7 @@ export function NewProject() {
               return;
             }
             create(name, style);
-            navigate({ to: "/story" });
+            navigate({ to: "/characters" });
           }}
         >
           <Field label="ชื่อโปรเจกต์">
@@ -88,13 +88,13 @@ export function Projects() {
       p.name.toLowerCase().includes(search.toLowerCase()) &&
       (style === "ทุกสไตล์" || p.style === style) &&
       (filter === "ทั้งหมด" ||
-        (filter === "Storyboard พร้อมแล้ว" ? progress(p) === 100 : progress(p) < 100)),
+        (filter === "มีรูปตัวละครและฉากแล้ว" ? progress(p) === 100 : progress(p) < 100)),
   );
   return (
     <>
       <Heading
         title="โปรเจกต์ของฉัน"
-        subtitle={`${projects.length} เรื่องราวในพื้นที่สร้างสรรค์ของคุณ`}
+        subtitle={`${projects.length} โปรเจกต์ภาพในพื้นที่สร้างสรรค์ของคุณ`}
       >
         <Button asChild>
           <Link to="/new-project">
@@ -120,7 +120,7 @@ export function Projects() {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         >
-          {["ทั้งหมด", "กำลังสร้างสรรค์", "Storyboard พร้อมแล้ว"].map((v) => (
+          {["ทั้งหมด", "กำลังสร้างสรรค์", "มีรูปตัวละครและฉากแล้ว"].map((v) => (
             <option key={v}>{v}</option>
           ))}
         </select>
@@ -222,7 +222,7 @@ export function Settings() {
             บริการ AI
           </h2>
           <p className="text-sm text-muted-foreground leading-7">
-            ยังไม่ได้เชื่อมต่อบริการแต่งเนื้อเรื่อง สร้างภาพ วิดีโอ และเสียงด้วย AI
+            ยังไม่ได้เชื่อมต่อบริการสร้างรูปตัวละครและฉากด้วย AI
             ขณะนี้ใช้งานตัวอย่างและแก้ไขเนื้อหาได้โดยไม่มีค่าใช้จ่ายในการสร้าง AI
           </p>
           <span className="inline-block text-xs text-bright mt-4">สถานะ: โหมดตัวอย่าง</span>
