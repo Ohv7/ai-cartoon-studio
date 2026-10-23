@@ -1,7 +1,6 @@
 import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import {
-  LayoutDashboard,
   Plus,
   FileText,
   Users,
@@ -23,13 +22,12 @@ import {
 import { Button } from "@/components/ui/button";
 import { useStudio } from "./provider";
 export const navigation = [
-  { to: "/", title: "หน้าหลัก", icon: LayoutDashboard },
+  { to: "/", title: "โปรเจกต์ของฉัน", icon: FolderOpen },
   { to: "/new-project", title: "สร้างโปรเจกต์ใหม่", icon: Plus },
   { to: "/story", title: "ไอเดียและเนื้อเรื่อง", icon: FileText },
   { to: "/characters", title: "สร้างตัวละคร", icon: Users },
   { to: "/scenes", title: "สร้างฉาก", icon: Image },
   { to: "/gallery", title: "คลังภาพการ์ตูน", icon: Images },
-  { to: "/projects", title: "โปรเจกต์ของฉัน", icon: FolderOpen },
   { to: "/settings", title: "ตั้งค่า", icon: Settings },
 ] as const;
 export function StudioShell({ children }: { children: ReactNode }) {
@@ -62,7 +60,7 @@ export function StudioShell({ children }: { children: ReactNode }) {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: true }}
-              className={`nav-item ${item.to === "/projects" ? "mt-6" : ""}`}
+              className={`nav-item ${item.to === "/settings" ? "mt-6" : ""}`}
               title={item.title}
               onClick={() => setMobile(false)}
             >
@@ -113,13 +111,13 @@ export function StudioShell({ children }: { children: ReactNode }) {
             <PanelLeftClose className="hidden md:block" />
           </Button>
           <h2 className="topbar-title text-base font-medium whitespace-nowrap">
-            {navigation.find((n) => n.to === path)?.title || "AI Cartoon Studio"}
+            {path === "/projects" ? "โปรเจกต์ของฉัน" : navigation.find((n) => n.to === path)?.title || "AI Cartoon Studio"}
           </h2>
           <form
             className="top-search"
             onSubmit={(e) => {
               e.preventDefault();
-              navigate({ to: "/projects" });
+              navigate({ to: "/" });
             }}
           >
             <Search size={15} />

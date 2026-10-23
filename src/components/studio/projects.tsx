@@ -16,7 +16,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useStudio } from "./provider";
 import { Heading, Field, SelectField, ProjectCard } from "./shared";
-import { progress } from "@/lib/studio/model";
+import { progress, NEW_PROJECT_WORKSPACE, CARTOON_STYLES } from "@/lib/studio/model";
 export function NewProject() {
   const { create } = useStudio();
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export function NewProject() {
               return;
             }
             create(name, style);
-            navigate({ to: "/characters" });
+            navigate({ to: NEW_PROJECT_WORKSPACE });
           }}
         >
           <Field label="ชื่อโปรเจกต์">
@@ -58,7 +58,7 @@ export function NewProject() {
           <SelectField
             label="สไตล์การ์ตูน"
             value={style}
-            options={["3D Cartoon", "2D Cartoon", "Anime"]}
+            options={CARTOON_STYLES}
             onChange={setStyle}
           />
           <div className="form-actions">
@@ -130,7 +130,7 @@ export function Projects() {
           value={style}
           onChange={(e) => setStyle(e.target.value)}
         >
-          {["ทุกสไตล์", "3D Cartoon", "2D Cartoon", "Anime"].map((v) => (
+          {["ทุกสไตล์", ...CARTOON_STYLES].map((v) => (
             <option key={v}>{v}</option>
           ))}
         </select>

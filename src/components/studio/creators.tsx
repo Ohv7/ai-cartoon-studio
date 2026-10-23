@@ -17,6 +17,7 @@ import { useStudio } from "./provider";
 import { Heading, ActiveProject, NeedProject, Field, SelectField, DemoNotice } from "./shared";
 import { imageFor } from "@/lib/studio/assets";
 import type { Character, Scene, Project } from "@/lib/studio/model";
+import { CARTOON_STYLES } from "@/lib/studio/model";
 const emptyCharacter: Character = {
   id: "",
   name: "",
@@ -147,7 +148,7 @@ function Characters({ project }: { project: Project }) {
           <SelectField
             label="สไตล์ตัวละคร"
             value={draft.style}
-            options={["Anime", "3D Cartoon", "2D Cartoon"]}
+            options={CARTOON_STYLES}
             onChange={(style) => patch({ style })}
           />
           <Button variant="hero" className="w-full" onClick={generate} disabled={busy}>
@@ -213,10 +214,6 @@ function Characters({ project }: { project: Project }) {
                         onClick={() => {
                           update(project.id, {
                             characters: characters.filter((x) => x.id !== c.id),
-                            shots: project.shots.map((s) => ({
-                              ...s,
-                              characters: s.characters.filter((id) => id !== c.id),
-                            })),
                           });
                           toast.success("ลบตัวละครแล้ว");
                         }}
@@ -339,7 +336,7 @@ function Scenes({ project }: { project: Project }) {
           <SelectField
             label="สไตล์ฉาก"
             value={draft.style}
-            options={["3D Cartoon", "2D Cartoon", "Anime"]}
+            options={CARTOON_STYLES}
             onChange={(style) => patch({ style })}
           />
           <Button variant="hero" className="w-full" onClick={generate} disabled={busy}>
