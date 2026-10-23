@@ -41,7 +41,7 @@ function StoryWorkspace({ project }: { project: Project }) {
   };
   return (
     <>
-      <Heading title="เขียนเนื้อเรื่องของคุณ" subtitle="เปลี่ยนไอเดียให้เป็นเรื่องราวที่น่าจดจำ" />
+      <Heading title="ไอเดียและเนื้อเรื่อง" subtitle="เปลี่ยนไอเดียให้เป็นเรื่องราวที่น่าจดจำ" />
       <ActiveProject />
       <DemoNotice />
       <div className="workspace-grid">
@@ -136,7 +136,7 @@ function StoryWorkspace({ project }: { project: Project }) {
                   if (!save()) e.preventDefault();
                 }}
               >
-                ไปขั้นตอนถัดไป
+                 ไปสร้างตัวละคร
                 <ArrowRight />
               </Link>
             </Button>

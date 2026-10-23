@@ -14,6 +14,11 @@ import { Button } from "@/components/ui/button";
 import { useStudio } from "./provider";
 import { progress, type Project } from "@/lib/studio/model";
 import { imageFor } from "@/lib/studio/assets";
+const workspaceSteps = [
+  { to: "/story", title: "1. ไอเดียและเนื้อเรื่อง" },
+  { to: "/characters", title: "2. ตัวละคร" },
+  { to: "/scenes", title: "3. ฉาก" },
+] as const;
 export function Heading({
   title,
   subtitle,
@@ -76,6 +81,7 @@ export function SelectField({
 export function ActiveProject() {
   const { active, projects, select } = useStudio();
   return (
+    <>
     <div className="flex items-center gap-2 mb-6 text-xs text-muted-foreground">
       <FolderOpen size={15} className="text-bright" />
       <span className="whitespace-nowrap">โปรเจกต์ปัจจุบัน</span>
@@ -92,6 +98,16 @@ export function ActiveProject() {
         ))}
       </select>
     </div>
+    <nav aria-label="ขั้นตอนสร้างภาพการ์ตูน" className="flex flex-wrap gap-2 mb-6">
+      {workspaceSteps.map((step) => (
+        <Button key={step.to} asChild variant="outline" size="sm">
+          <Link to={step.to} activeProps={{ className: "border-primary text-bright bg-accent" }}>
+            {step.title}
+          </Link>
+        </Button>
+      ))}
+    </nav>
+    </>
   );
 }
 export function NeedProject() {

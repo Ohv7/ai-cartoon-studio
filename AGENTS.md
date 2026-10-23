@@ -16,3 +16,5 @@
 - Keep semantic visual tokens and responsive studio styles in the global stylesheet; workspace components share the same design system.
 
 - Retired video and storyboard URLs redirect to the image gallery; project parsing accepts legacy stored data without requiring retired workflow fields.
+- Render the shared Projects workspace at both `/` and `/projects` to preserve existing links without maintaining two home experiences.
+- Keep shared image-style options and the initial workspace destination in the pure studio model so creation, editing, and filters stay aligned.

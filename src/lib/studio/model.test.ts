@@ -1,13 +1,14 @@
 import { describe, it, expect } from "vitest";
-import { makeProject, updateProject, reorderShots, parseProjects } from "./model";
-import { aiCapabilities, renderVideo } from "./ai";
+import { makeProject, updateProject, progress, parseProjects, NEW_PROJECT_WORKSPACE } from "./model";
+import { aiCapabilities } from "./ai";
 describe("project lifecycle", () => {
   it("creates independent projects with empty editable workspaces", () => {
     const a = makeProject("ต้นฉบับ");
     const b = makeProject("เรื่องใหม่");
     expect(a.id).not.toBe(b.id);
     expect(a.name).toBe("ต้นฉบับ");
-    expect(a.shots).toEqual([]);
+    expect(a.characters).toEqual([]);
+    expect(a.scenes).toEqual([]);
     expect(a.demo).toBe(false);
   });
   it("persists and loads saved projects using JSON", () => {
@@ -22,13 +23,24 @@ describe("project lifecycle", () => {
     expect(result[0]?.story).toBe("ใหม่");
     expect(result[1]?.story).toBe("");
   });
-  it("reorders storyboard scenes without dropping scenes", () => {
-    const shots = [{ id: "a" }, { id: "b" }, { id: "c" }] as Parameters<typeof reorderShots>[0];
-    expect(reorderShots(shots, 0, 1).map((s) => s.id)).toEqual(["b", "a", "c"]);
-    expect(reorderShots(shots, 0, -1).map((s) => s.id)).toEqual(["a", "b", "c"]);
+  it("starts named projects with ideas and story rather than characters", () => {
+    expect(NEW_PROJECT_WORKSPACE).toBe("/story");
   });
-  it("does not offer fake video rendering", async () => {
-    expect(aiCapabilities.video).toBe(false);
-    await expect(renderVideo()).rejects.toThrow("ยังไม่ได้เชื่อมต่อ AI rendering");
+  it("counts character and scene images as two equal progress stages", () => {
+    const p = makeProject("ภาพใหม่");
+    expect(progress(p)).toBe(0);
+    p.characters = [{ id: "c", name: "มินะ", gender: "หญิง", age: "เด็ก", personality: "", appearance: "", clothing: "", prompt: "", style: p.style, image: "forest" }];
+    expect(progress(p)).toBe(50);
+    p.scenes = [{ id: "s", name: "ป่า", description: "ป่าเขียว", location: "ป่า", time: "เช้า", mood: "อบอุ่น", style: p.style, image: "forest" }];
+    expect(progress(p)).toBe(100);
+  });
+  it("keeps legacy stored projects readable without requiring video fields", () => {
+    const p = makeProject("โปรเจกต์เดิม");
+    const legacy = { ...p, shots: [{ id: "old" }], video: {} };
+    expect(parseProjects(JSON.stringify([legacy]))?.[0]?.name).toBe("โปรเจกต์เดิม");
+    expect(parseProjects(JSON.stringify([p]))?.[0]?.characters).toEqual([]);
+  });
+  it("does not claim real AI generation is connected", () => {
+    expect(aiCapabilities).toEqual({ story: false, character: false, scene: false });
   });
 });

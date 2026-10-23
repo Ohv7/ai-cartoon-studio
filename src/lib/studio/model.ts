@@ -37,6 +37,8 @@ export type Project = {
   scenes: Scene[];
 };
 export const STORE_KEY = "ai-cartoon-studio-v1";
+export const NEW_PROJECT_WORKSPACE = "/story" as const;
+export const CARTOON_STYLES = ["3D Cartoon", "2D Cartoon", "Anime", "มังงะขาวดำ", "คอมิกสี", "มังงะสยองขวัญ"];
 export function makeProject(name: string, style = "3D Cartoon"): Project {
   return {
     id: crypto.randomUUID(),
