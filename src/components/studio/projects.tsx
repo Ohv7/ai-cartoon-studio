@@ -85,7 +85,7 @@ export function Projects() {
   const [style, setStyle] = useState("ทุกสไตล์");
   const filtered = projects.filter(
     (p) =>
-      p.name.toLowerCase().includes(search.toLowerCase()) &&
+      (p.name + " " + p.title).toLowerCase().includes(search.toLowerCase()) &&
       (style === "ทุกสไตล์" || p.style === style) &&
       (filter === "ทั้งหมด" ||
         (filter === "มีรูปตัวละครและฉากแล้ว" ? progress(p) === 100 : progress(p) < 100)),

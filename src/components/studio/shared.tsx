@@ -199,6 +199,9 @@ export function ProjectCard({
             <MoreHorizontal size={17} />
           </Button>
         </div>
+        <p className="text-[11px] text-muted-foreground truncate mb-2">
+          {project.title ? `เรื่ อง: ${project.title}` : "ยังไมได้ ตั้งชื่ อเรื่ อง"}
+        </p>
         <div className="project-meta">
           <CalendarDays size={12} />
           {new Date(project.createdAt).toLocaleDateString("th-TH", {
@@ -275,6 +278,9 @@ export function ProjectCard({
                 onChange={(e) => setName(e.target.value)}
               />
             </Field>
+            <p className="text-[11px] text-muted-foreground mb-4">
+              ส่ วนชื่ อเรื่ องแก้ ไขได้ หน้ าไอเดี ยและเนื้ อเรื่ อง
+            </p>
             <Button type="submit">
               <Check />
               บันทึก
