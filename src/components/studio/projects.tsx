@@ -112,7 +112,7 @@ export function Projects() {
           <input
             aria-label="ค้นหาในโปรเจกต์"
             className="pl-10"
-            placeholder="ค้นหาชื่อโปรเจกต์..."
+            placeholder="ค้นหาชื่ อโปรเจกต์หรือชื่ อเรื่ อง..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
