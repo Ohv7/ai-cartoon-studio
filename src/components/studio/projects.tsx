@@ -55,6 +55,9 @@ export function NewProject() {
               placeholder="เช่น การผจญภัยในป่ามหัศจรรย์"
             />
           </Field>
+          <p className="text-[11px] text-muted-foreground -mt-3 mb-5">
+            ชื่ อโปรเจกต์ ใช้ จำหน้ ารายการงานของคุ ณ ส่ วนชื่ อเรื่ องจะตั้ งในขั้ นตอนต่ อไป
+          </p>
           <SelectField
             label="สไตล์การ์ตูน"
             value={style}
