@@ -34,6 +34,19 @@ describe("project lifecycle", () => {
     p.scenes = [{ id: "s", name: "ป่า", description: "ป่าเขียว", location: "ป่า", time: "เช้า", mood: "อบอุ่น", style: p.style, image: "forest" }];
     expect(progress(p)).toBe(100);
   });
+  it("keeps the project name separate from the story title", () => {
+    const p = makeProject("คลังภาพของฉัน");
+    expect(p.name).toBe("คลังภาพของฉัน");
+    expect(p.title).toBe("");
+    const edited = updateProject([p], p.id, { title: "การผจญภัยในป่า" });
+    expect(edited[0]?.name).toBe("คลังภาพของฉัน");
+    expect(edited[0]?.title).toBe("การผจญภัยในป่า");
+    expect(parseProjects(JSON.stringify(edited))?.[0]?.title).toBe("การผจญภัยในป่า");
+  });
+  it("uses the stored project name as the story title for older saved projects", () => {
+    const legacy = { id: "1", name: "โปรเจกต์เดิม", story: "", characters: [], scenes: [] };
+    expect(parseProjects(JSON.stringify([legacy]))?.[0]?.title).toBe("โปรเจกต์เดิม");
+  });
   it("keeps legacy stored projects readable without requiring video fields", () => {
     const p = makeProject("โปรเจกต์เดิม");
     const legacy = { ...p, shots: [{ id: "old" }], video: {} };

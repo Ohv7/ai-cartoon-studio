@@ -55,6 +55,9 @@ export function NewProject() {
               placeholder="เช่น การผจญภัยในป่ามหัศจรรย์"
             />
           </Field>
+          <p className="text-[11px] text-muted-foreground -mt-3 mb-5">
+            ชื่ อโปรเจกต์ ใช้ จำหน้ ารายการงานของคุ ณ ส่ วนชื่ อเรื่ องจะตั้ งในขั้ นตอนต่ อไป
+          </p>
           <SelectField
             label="สไตล์การ์ตูน"
             value={style}
@@ -85,7 +88,7 @@ export function Projects() {
   const [style, setStyle] = useState("ทุกสไตล์");
   const filtered = projects.filter(
     (p) =>
-      p.name.toLowerCase().includes(search.toLowerCase()) &&
+      (p.name + " " + p.title).toLowerCase().includes(search.toLowerCase()) &&
       (style === "ทุกสไตล์" || p.style === style) &&
       (filter === "ทั้งหมด" ||
         (filter === "มีรูปตัวละครและฉากแล้ว" ? progress(p) === 100 : progress(p) < 100)),
@@ -109,7 +112,7 @@ export function Projects() {
           <input
             aria-label="ค้นหาในโปรเจกต์"
             className="pl-10"
-            placeholder="ค้นหาชื่อโปรเจกต์..."
+            placeholder="ค้นหาชื่ อโปรเจกต์หรือชื่ อเรื่ อง..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
