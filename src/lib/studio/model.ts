@@ -23,6 +23,7 @@ export type Scene = {
 export type Project = {
   id: string;
   name: string;
+  title: string;
   createdAt: string;
   style: string;
   image: string;
@@ -43,6 +44,7 @@ export function makeProject(name: string, style = "3D Cartoon"): Project {
   return {
     id: crypto.randomUUID(),
     name: name.trim(),
+    title: "",
     createdAt: new Date().toISOString(),
     style,
     image: "world",
@@ -80,7 +82,10 @@ export function parseProjects(raw: string | null): Project[] | null {
       )
     )
       return null;
-    return value;
+    return value.map((p) => ({
+      ...p,
+      title: typeof p.title === "string" ? p.title : p.name,
+    }));
   } catch {
     return null;
   }
@@ -90,6 +95,7 @@ export function demoProjects(): Project[] {
     (name, i) => {
       const p = makeProject(name);
       p.demo = true;
+      p.title = name;
       p.image = ["forest", "space", "world"][i] || "world";
       p.createdAt = "2026-10-16T04:00:00Z";
       p.story = `${name}\n\nมินะและบลูออกเดินทางเพื่อค้นหาความหมายของมิตรภาพ เมื่อพวกเขาพบเส้นทางที่ไม่เคยมีใครรู้จัก การผจญภัยครั้งใหม่จึงเริ่มขึ้น ทั้งสองต้องร่วมมือกันผ่านอุปสรรค และค้นพบว่าความกล้าหาญเริ่มต้นจากการเชื่อใจเพื่อน`;
